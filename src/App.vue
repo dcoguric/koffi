@@ -7,14 +7,6 @@
   </div>
   </router-link>
   <router-view/>
-  
-  <footer>
-    <img src="@/assets/question-mark.png" @click="learnMore()" alt="">
-    <h5 v-show="showInfo"> - by cogi for obi :3</h5>
-    <a href="https://www.deezer.com/us/playlist/11520562024">
-      <img src="@/assets/music.png" alt="">
-    </a>
-  </footer>
 </div>
 </template>
 
@@ -37,25 +29,6 @@ export default {
 </script>
 
 <style>
-footer {
-  display: flex;
-  width: 90%;
-  margin: 5px auto 0px;
-  justify-content: space-between;
-}
-
-footer img {
-  cursor: pointer;
-  width: 60px;
-  background-color: #997D54;
-  border-radius: 18px;
-  padding: 15px;
-}
-
-h5 {
-  margin-top: 17px;
-  margin-right: 30px;
-}
 
 #app-div {
   max-width: 476px;
