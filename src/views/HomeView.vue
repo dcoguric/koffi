@@ -36,7 +36,7 @@
     <footer>
     <img src="@/assets/question-mark.png" @click="learnMore()" alt="">
     <h5 v-show="showInfo"> - by cogi for obi :3</h5>
-    <a href="https://www.deezer.com/us/playlist/11520562024">
+    <a href="https://www.deezer.com/us/playlist/11520562024" target="blank">
       <img src="@/assets/music.png" alt="">
     </a>
   </footer>
@@ -142,12 +142,19 @@ export default {
       ingredients: [],
       showIngredients: false,
       bubbleUp: false,
-      errorMessage: ""
+      errorMessage: "",
+      showInfo: false
     };
   },
   methods: {
     chooseIngredients() {
       this.showIngredients = !this.showIngredients;
+    },
+    learnMore() {
+      this.showInfo = true;
+      setTimeout(() => {
+        this.showInfo = false;
+      }, 2000);
     },
     coffeeTime() {
       if (this.showIngredients) return;

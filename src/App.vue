@@ -12,19 +12,6 @@
 
 <script>
 export default {
-  methods: {
-    learnMore() {
-      this.showInfo = true;
-      setTimeout(() => {
-        this.showInfo = false;
-      }, 2000);
-    }
-  },
-  data() {
-    return {
-      showInfo: false
-    };
-  }
 }
 </script>
 
