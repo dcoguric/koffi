@@ -4,10 +4,17 @@
 <div id="recipe" v-show="!error">
     <h1>{{recipe.name}}</h1>
     <img class="coffee-img" :src="'/images/' + recipe.name.toLowerCase() + '.jpg'" alt="">
+
+    <div id="estimated-time">
+        <img src="@/assets/coffee-time.png" alt="">
+        <h3>Prep time: {{prepTime}}</h3>
+    </div>
+
     <div id="show-instructions-arrow" @click="showInstructionsMethod()">
         <h4>show instructions</h4>
         <img :class="['arrow-img', {'rotate': showInstructions}]" src="@/../public/icons/arrow-down.png" alt="">
     </div>
+
     <ol id="show-instructions">
         <li v-for="step in recipe.instructions" :key="step">{{step}}</li>
     </ol>
@@ -20,6 +27,21 @@
 </template>
 
 <style scoped>
+    #estimated-time {
+        margin: 5px 0px;
+        display: flex;
+    }
+
+    #estimated-time img {
+        width: 50px;
+        height: 50px;
+    }
+
+    #estimated-time h3 {
+        margin-top: 8px;
+        margin-left: 10px;
+    }
+
     h5 {
         height: 200px;
         display: flex;
@@ -113,14 +135,15 @@ export default {
                 ]
             },
             showInstructions: false,
-            error: false
+            error: false,
+            prepTime: ""
         };
     },
     methods: {
         showInstructionsMethod() {
             this.showInstructions = !this.showInstructions;
             if (this.showInstructions) {
-                document.getElementById('show-instructions').style.height = String(90 * this.recipe.instructions.length) + 'px';
+                document.getElementById('show-instructions').style.height = String(80 * this.recipe.instructions.length) + 'px';
             } else {
                 document.getElementById('show-instructions').style.height = '0px';
             }
@@ -148,7 +171,15 @@ export default {
             this.error = true;
             return;
         }
-        this.recipe = recipes[Math.floor(recipes.length * Math.random())];
+        recipes.sort((a, b) => {
+            return b.ingredients.length - a.ingredients.length;
+        })
+        this.recipe = recipes[0];
+        //this.recipe = recipes[Math.floor(recipes.length * Math.random())];
+        this.prepTime = String(this.recipe.minutes) + ' mins';
+        if (this.recipe.minutes == 24) {
+            this.prepTime = "24 hours"
+        }
     }
 }
 </script>
